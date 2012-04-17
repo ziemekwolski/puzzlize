@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "rmagick"
+  s.add_runtime_dependency "paperclip"
+  s.add_runtime_dependency "rmagick"
+  s.add_runtime_dependency "supermodel"
   
 end
