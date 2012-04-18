@@ -14,11 +14,6 @@ class Puzzle < SuperModel::Base
   def self.image_path_location=(path)
     @@image_path_location = path
   end
-  
-  # this is patched because supermodel treats update_attributes the same as save
-  # ActiveRecord does not do this.
-  def update_piece_information
-  end
 end
 
 describe "puzzlize" do

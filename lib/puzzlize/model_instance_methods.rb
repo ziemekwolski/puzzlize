@@ -1,11 +1,11 @@
 module Puzzlize
   module ModelInstanceMethods
     def default_puzzle_image_url
-      self.send(self.class.get_puzzlize_attribute_name, :url, :medium)
+      self.send(self.class.get_puzzlize_attribute_name).url(:medium)
     end
 
     def default_puzzle_image_path
-      self.send(self.class.get_puzzlize_attribute_name, :path, :medium)
+      self.send(self.class.get_puzzlize_attribute_name).path(:medium)
     end
 
     def puzzle_images_urls
@@ -29,6 +29,18 @@ module Puzzlize
     end
 
     def make_puzzle
+      if puzzle_created?
+        determine_parameters
+        make_all_piece
+        update_piece_information
+      end
+    end
+    
+    def puzzle_created?
+      !self.vertical_pieces?
+    end
+    
+    def determine_parameters
       @file_location = self.default_puzzle_image_path
       @source_file = Magick::Image.read(@file_location).first
       @cutter = Puzzlize::Cutter.new
@@ -36,8 +48,6 @@ module Puzzlize
       @cutter.image_width = @source_file.columns
       @cutter.image_height = @source_file.rows
       @source_file = @source_file.crop(*(@cutter.piece_fitting_diamentions + [true]))
-      all_piece
-      update_piece_information
     end
     
     # this is isolated because supermodel treats update_attributes the same as save
@@ -52,8 +62,7 @@ module Puzzlize
         :image_height => @cutter.image_height})
     end
 
-    def single_piece(row_x, row_y)
-
+    def make_single_piece(row_x, row_y)
       # get the source image and crop it to the appropriate size.
       bg = @source_file.crop(*(@cutter.piece_points(row_x, row_y) + [true]))
 
@@ -105,10 +114,10 @@ module Puzzlize
       file_location.sub(/\..*$/, "-#{row_x}_#{row_y}.gif")
     end
 
-    def all_piece
+    def make_all_piece
       @cutter.vertical_pieces.times do |y_axis|
         @cutter.horizontal_pieces.times do |x_axis|
-          single_piece(x_axis, y_axis)
+          make_single_piece(x_axis, y_axis)
         end
       end
     end

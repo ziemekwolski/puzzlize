@@ -23,5 +23,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "paperclip"
   s.add_runtime_dependency "rmagick"
   s.add_runtime_dependency "supermodel"
-  
 end

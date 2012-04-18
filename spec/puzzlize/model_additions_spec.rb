@@ -10,7 +10,7 @@ describe "puzzlize" do
   describe "ModelInstanceMethods" do
     it "should include the following methods" do
       p = Puzzle.new
-      methods = [:default_puzzle_image_path, :default_puzzle_image_url, :puzzle_images_urls, :puzzle_pieces_names, :make_puzzle, :single_piece, :piece_file_name, :all_piece]
+      methods = [:default_puzzle_image_path, :default_puzzle_image_url, :puzzle_images_urls, :puzzle_pieces_names, :make_puzzle, :make_single_piece, :piece_file_name, :make_all_piece]
       (p.methods & methods).should == methods
     end
     

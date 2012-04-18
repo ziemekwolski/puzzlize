@@ -72,7 +72,7 @@ module Puzzlize
   	  puzzle_pieces_html = ""
   		puzzle.puzzle_pieces_names.each do |name|
     		puzzle_pieces_html += "
-    		<div class='s-#{name} %> ' id='i-#{name}' style='width:#{puzzle.horizontal_piece_size}px; height:#{puzzle.vertical_piece_size}px; position:absolute; top:#{134 + rand(320)}px; left:#{rand(180)}px;' >
+    		<div class='s-#{name}' id='i-#{name}' style='width:#{puzzle.horizontal_piece_size}px; height:#{puzzle.vertical_piece_size}px; position:absolute; top:#{134 + rand(320)}px; left:#{rand(180)}px;' >
     		  <div class='drag'></div>
     		</div>"
   		end

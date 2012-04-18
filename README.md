@@ -20,19 +20,36 @@ Alternatively you could install the gem your self:
 
 ##	Usage
 
-Before you start you will need to run a migration on the model that you want to to be added to:
+Before you start you will need to add a migration on the model that you want to use:
   ```ruby
-  rake generate puzzlize_migration
-  rake db:migrate
+  rails g migration add_puzzle_columns
+  ```
+  
+Inside the migration you will need:
+
+  ```ruby
+  def self.up
+    change_table :painting do |t|
+      t.add_puzzlize_columns
+    end
+  end
+
+  def self.down
+    remove_puzzlize_columns :painting
+  end
   ```
 
 	```ruby
 	class Painting < ActiveRecord::Base
+	  # optional but use be placed here if used.
+	  has_attached_file :image, {:styles => { :medium => "800x800>" }}.merge(PAPERCLIP_STORAGE_OPTIONS)
+	  # end optional
+
 	  puzzlize :image
 	end
 	```
 
-If you are not using paperclip and you image object does not have access to `image.path(:medium)` and `image.url(:medium)` you can simply overwritte these two methods 
+If you are not using paperclip and your image object does not have access to `image.path(:medium)` and `image.url(:medium)` you can must simply overwritte these two methods in your model.
 
 	```ruby
 
@@ -52,5 +69,6 @@ in the view (I used a show):
 	puzzlize_show_puzzle(@painting)
 	
   ```
+where @painting is model object.
   
   
