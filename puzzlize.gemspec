@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "puzzlize"
   s.version     = Puzzlize::VERSION
   s.authors     = ["Ziemek Wolski"]
-  s.email       = ["ziemek.wolski@gmail.com"]
-  s.homepage    = ""
+  s.email       = ["ziemek.wolski+gem@gmail.com"]
+  s.homepage    = "https://github.com/ziemekwolski/puzzlize"
   s.summary     = %q{Gem created a puzzle using images from a predefined image on a model.}
   s.description = %q{This gem is made up off two libraries. A cutter library - determines all the points to cut. Rmagick rapper, which actually cuts up the images.}
 
