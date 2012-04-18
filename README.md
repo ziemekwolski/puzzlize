@@ -13,6 +13,7 @@ Edit you gem file add puzzlize to it.
 	```ruby
 	gem "puzzlize"
 	```
+	
 Alternatively you could install the gem your self:
 
 	Console:
@@ -21,6 +22,7 @@ Alternatively you could install the gem your self:
 ##	Usage
 
 Before you start you will need to add a migration on the model that you want to use:
+
   ```ruby
   rails g migration add_puzzle_columns
   ```
@@ -38,6 +40,8 @@ Inside the migration you will need:
     remove_puzzlize_columns :painting
   end
   ```
+  
+Inside your model you will need:
 
 	```ruby
 	class Painting < ActiveRecord::Base
@@ -52,23 +56,23 @@ Inside the migration you will need:
 If you are not using paperclip and your image object does not have access to `image.path(:medium)` and `image.url(:medium)` you can must simply overwritte these two methods in your model.
 
 	```ruby
+	class Painting < ActiveRecord::Base
+	
+  	def default_puzzle_image_url
+  	  // Replacement code for --- image.url(:medium) ---
+  	end
 
-	def default_puzzle_image_url
-	  // Replacement code for --- image.url(:medium) ---
-	end
-
-	def default_puzzle_image_path
-	  // Replacement code for --- image.path(:medium) ---
-	end
-
+  	def default_puzzle_image_path
+  	  // Replacement code for --- image.path(:medium) ---
+  	end
+  end
 	```
 
 in the view (I used a show):
+
 	```ruby
 	puzzlize_javascript_and_css(@painting)
 	puzzlize_show_puzzle(@painting)
 	
   ```
 where @painting is model object.
-  
-  
