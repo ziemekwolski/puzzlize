@@ -73,6 +73,6 @@ in the view (I used a show):
 	```ruby
 	puzzlize_javascript_and_css(@painting)
 	puzzlize_show_puzzle(@painting)
-	
   ```
+  
 where @painting is model object.
