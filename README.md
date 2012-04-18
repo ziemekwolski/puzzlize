@@ -51,7 +51,7 @@ class Painting < ActiveRecord::Base
 end
 ```
 
-If you are not using paperclip and your image object does not have access to `image.path(:medium)` and `image.url(:medium)` you can must overwritte these two methods in your model.
+If you are not using paperclip and your image object does not have access to `image.path(:medium)` and `image.url(:medium)` you must overwritte these two methods in your model.
 
 ```ruby
 class Painting < ActiveRecord::Base
